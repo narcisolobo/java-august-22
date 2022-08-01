@@ -43,8 +43,11 @@ public class Fundamentals {
         String b = new String("Jerry");
         String c = new String("Jerry");
 
-        // System.out.println(m == a);
-        // System.out.println(b == c);
+        System.out.println(m == a); // prints true
+        System.out.println(b == c); // prints false
+
+        // How can we check for equality between b and c?
+        System.out.println(b.equals(c)); // prints true
 
     }
 }
