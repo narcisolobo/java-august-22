@@ -1,4 +1,4 @@
-
+import java.awt.*;
 
 public class Fundamentals {
     // Anatomy of a Java method
@@ -18,7 +18,12 @@ public class Fundamentals {
         int y = x;
 
         x = 2;
-        // System.out.println(y);
+        System.out.println(y); // this prints 1;
+
+        Point d = new Point(1, 1);
+        Point e = d;
+        d.x = 2;
+        System.out.println(e); // java.awt.Point[x=2,y=1]
 
         // Reference Datatypes / Object Types / Class Wrappers
         String myName = "Narciso Lobo";
@@ -38,8 +43,8 @@ public class Fundamentals {
         String b = new String("Jerry");
         String c = new String("Jerry");
 
-        System.out.println(m == a);
-        System.out.println(b == c);
+        // System.out.println(m == a);
+        // System.out.println(b == c);
 
     }
 }
