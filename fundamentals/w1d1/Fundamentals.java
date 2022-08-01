@@ -1,62 +1,45 @@
-import java.math.BigDecimal;
+
 
 public class Fundamentals {
-
     // Anatomy of a Java method
     public static void main(String[] args) {
-        
-        // Printing to the console
+        // Primitive Datatypes
+        int age = 25;
+        boolean isCool = true;
+        double gpa = 4.0;
+        long bigNumber = 23_456_789;
+        char initial = 'N';
 
-        // How does our computer execute Java code?
+        byte newByte = 30;
+        short herAge = 35;
+        float interestRate = .02f;
 
-        // What happens if there's an error?
+        int x = 1;
+        int y = x;
 
-        // Primitive Variables
-        byte myByte = 20;
-        short myShort = 32_000;
-        int myInt = 45;
-        long myLong = 5678L;
-        double myDouble = 2.2;
-        float myFloat = 5.65F;
-        boolean isBool = true;
-        char myChar = 'J';
+        x = 2;
+        // System.out.println(y);
 
-        String myString = "Narciso";
-        
-        System.out.println(myByte);
-        System.out.println(myShort);
-        System.out.println(myInt);
-        System.out.println(myLong);
-        System.out.println(myDouble);
-        System.out.println(myFloat);
-        System.out.println(isBool);
-        System.out.println(myChar);
-        System.out.println(myString);
+        // Reference Datatypes / Object Types / Class Wrappers
+        String myName = "Narciso Lobo";
 
-        // Object 
+        String nameA = new String("Jordan");
+        String nameB = nameA;
 
-/*      Input :
-        double a=0.03;
-        double b=0.04;
-        double c=b-a;
-        System.out.println(c);
-        Output :0.009999999999999998
+        nameA = "Brandon";
 
-        Input :
-        BigDecimal _a = new BigDecimal("0.03");
-        BigDecimal _b = new BigDecimal("0.04");
-        BigDecimal _c = _b.subtract(_a);
-        System.out.println(_c);
-        Output :0.01 */
+        // System.out.println(nameB);
 
-        double a=0.03;
-        double b=0.04;
-        double c=b-a;
-        System.out.println(c);
-        
-        BigDecimal _a = new BigDecimal("0.03");
-        BigDecimal _b = new BigDecimal("0.04");
-        BigDecimal _c = _b.subtract(_a);
-        System.out.println(_c);
+        Integer hisAge = 36;
+
+        String m = "Mikey";
+        String a = "Mikey";
+
+        String b = new String("Jerry");
+        String c = new String("Jerry");
+
+        System.out.println(m == a);
+        System.out.println(b == c);
+
     }
 }
