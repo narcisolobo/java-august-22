@@ -1,10 +1,10 @@
 /*
  * A class to represent a single node of a SinglyLinkedList that can be
  * linked to other Node instances to form a list of linked nodes.
-*/
+ */
 
 class ListNode {
-  constructor (data) {
+  constructor(data) {
     this.data = data;
     this.next = null;
   }
@@ -13,10 +13,10 @@ class ListNode {
 /*
  * This class keeps track of the start (head) of the list and to store all the
  * functionality (methods) that each list should have.
-*/
+ */
 
 class SinglyLinkedList {
-  constructor () {
+  constructor() {
     this.head = null;
   }
 
@@ -31,9 +31,9 @@ class SinglyLinkedList {
   printValues() {
     // print all values in the list
     let runner = this.head;
-    let output = '';
+    let output = "";
     while (runner) {
-      output += `${runner.data} > `
+      output += `${runner.data} > `;
       runner = runner.next;
     }
     console.log(output);
@@ -51,7 +51,7 @@ class SinglyLinkedList {
     let runner = this.head;
 
     if (runner === null) {
-      this.head = newBack
+      this.head = newBack;
     } else {
       while (runner.next) {
         runner = runner.next;
@@ -90,7 +90,7 @@ class SinglyLinkedList {
    * @param {?ListNode} runner The current node during the traversal of this list
    *    or null when the end of the list has been reached.
    * @returns {SinglyLinkedList} This list.
-  */
+   */
   insertAtBackRecursive(data, runner = this.head) {
     if (!runner.next) {
       runner.next = new ListNode(data);
@@ -99,11 +99,50 @@ class SinglyLinkedList {
     return this.insertAtBackRecursive(data, runner.next);
   }
 
-}
+  // TUESDAY, August 2
+  removeHead() {
+    if (this.isEmpty()) return this;
+    this.head = this.head.next;
+    return this;
+  }
 
+  average() {
+    let total = 0;
+    let counter = 0;
+    let current = this.head;
+
+    while (current) {
+      total += current.data;
+      counter++;
+      current = current.next;
+    }
+    console.log('hello world')
+    return total / counter;
+  }
+
+  calcAverage() {
+    if (this.isEmpty()) return this;
+    let count = 0;
+    let sum = 0;
+    let runner = this.head;
+
+    while (runner) {
+      count += 1;
+      sum += runner.data;
+      runner = runner.next;
+    }
+
+    const average = sum / count;
+    return average;
+  }
+}
 const newList = new SinglyLinkedList();
 // newList.addToFront(5).addToFront(1).addToFront(7).addToFront(3).addToFront(2).printValues();
-newList.insertAtBack(54).insertAtBack(23).insertAtBack(11).insertAtBack(2).insertAtBackRecursive(62).printValues();
+// newList.insertAtBack(54).insertAtBack(23).insertAtBack(11).insertAtBack(2).insertAtBackRecursive(62).printValues();
+// newList.removeHead().printValues();
+
+console.log(newList.average());
+
 // newList.insertAtBackMany([1, 5, 9, 8, 4, 2, 7, 3, 6]).printValues();
-console.log(newList.toArray());
+// console.log(newList.toArray());
 // console.log(newList.isEmpty());
