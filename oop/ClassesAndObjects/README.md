@@ -23,7 +23,7 @@ class MyClass {
     // method declarations
 }
 ```
-**Class Names Should be Nouns!**
+**Class Names Should be Pascal Case Nouns!**
 
 The first line can also contain a few other keywords, like the access modifier (*public or private*) and whether it extends a superclass or implements any interfaces.
 
@@ -69,7 +69,7 @@ public double calculateSquareFootage(double width, double length) {
     return squareFootage;
 }
 ```
-**Method Names Should be Verbs (at least the first word)!**
+**Method Names Should be Camel Case Verbs (at least the first word)!**
 
 The only required elements of a method declaration are the method's return type, name, a pair of parentheses, (), and a body between braces, {}.
 
