@@ -1,6 +1,6 @@
 # Java Day 2 – OOP Basics Warm Up
 
-1. What does OOP stand for? What is it, briefly
+1. What does OOP stand for? What is it, briefly?
 2. What is a class?
 3. Classes in Java contain member variables and methods. Give a brief explanation for each:
    1. Member Variables:
