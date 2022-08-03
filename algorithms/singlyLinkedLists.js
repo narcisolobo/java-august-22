@@ -135,14 +135,47 @@ class SinglyLinkedList {
     const average = sum / count;
     return average;
   }
+
+  removeBack() {
+    // Remove the last node of the list.
+    let runner = this.head;
+    if (this.isEmpty) return this.head;
+    if (runner.next == null) {
+      this.head = null;
+      return this;
+    }
+    while (runner.next.next) {
+      runner = runner.next;
+    }
+    runner.next = null;
+    return this;
+  }
+
+  hasValue(val) {
+    // Return true if val exists in list, false if not.
+    if (this.head == null) return false;
+    let runner = this.head;
+    while (runner) {
+      if (runner.data == val) return true;
+      runner = runner.next;
+    }
+    return false;
+  }
+
+  // BONUSES:
+  hasValueRecursive(val, current = this.head) {
+    // Implement hasValue recursively.
+  }
 }
+
 const newList = new SinglyLinkedList();
 // newList.addToFront(5).addToFront(1).addToFront(7).addToFront(3).addToFront(2).printValues();
 // newList.insertAtBack(54).insertAtBack(23).insertAtBack(11).insertAtBack(2).insertAtBackRecursive(62).printValues();
 // newList.removeHead().printValues();
 
-console.log(newList.average());
+// console.log(newList.average());
 
-// newList.insertAtBackMany([1, 5, 9, 8, 4, 2, 7, 3, 6]).printValues();
-// console.log(newList.toArray());
+newList.insertAtBackMany([1, 5, 9, 8, 4, 2, 7, 3, 6]).printValues();
+console.log(newList.hasValue(6));
+// newList.removeBack().printValues();
 // console.log(newList.isEmpty());
