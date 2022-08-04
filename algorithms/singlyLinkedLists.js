@@ -170,15 +170,68 @@ class SinglyLinkedList {
   // Thursday, August 4:
   findMax() {
     // Find and return the max value in the list.
+    if (this.isEmpty()) {
+      console.log("This list is empty.");
+      return this;
+    } else if (this.head.next == null) {
+      return this.head.data;
+    }
+
+    let max = this.head;
+    let runner = this.head.next
+    while (runner) {
+      if (runner.data > max.data) {
+        max = runner;
+      }
+      runner = runner.next;
+    }
+
+    return max.data;
   }
 
   secondToLast() {
-    // Return the data of the second to last node in this list or null if node does not exist.
+    // Return the data of the second-to-last node in this list or null if node does not exist.
+    if (this.isEmpty() || !this.head.next) {
+      console.log("There are not enough nodes in this list.");
+      return null;
+    }
+    let runner = this.head;
+    while (runner.next.next) {
+      runner = runner.next;
+    }
+    return runner.data;
   }
 
   removeVal(val) {
     // Remove the node that has the matching given val as it's data.
     // Return a boolean indicating if a node was removed or not.
+    if (this.isEmpty()) {
+      console.log("This list is empty.");
+      return false;
+    }
+
+    if (!this.head.next && this.head.data === val) {
+      this.head = null;
+      return true;
+    }
+
+    let prev = null;
+    let runner = this.head;
+
+    while (runner) {
+      if (runner.data === val && runner.next) {
+        this.head = runner.next;
+        return true;
+      }
+      if (runner.data === val) {
+        prev.next = runner.next;
+        return true;
+      }
+      prev = runner;
+      runner = runner.next;
+    }
+
+    return false;
   }
 
   // BONUS:
@@ -189,13 +242,21 @@ class SinglyLinkedList {
 }
 
 const newList = new SinglyLinkedList();
+newList.insertAtBackMany([1, 5, 9, 8, 4, 2, 7, 3, 6]);
+const onlyOne = new SinglyLinkedList();
+onlyOne.addToFront(3);
+const emptyList = new SinglyLinkedList();
 // newList.addToFront(5).addToFront(1).addToFront(7).addToFront(3).addToFront(2).printValues();
 // newList.insertAtBack(54).insertAtBack(23).insertAtBack(11).insertAtBack(2).insertAtBackRecursive(62).printValues();
 // newList.removeHead().printValues();
 
 // console.log(newList.average());
 
-newList.insertAtBackMany([1, 5, 9, 8, 4, 2, 7, 3, 6]).printValues();
-console.log(newList.hasValue(6));
+console.log(newList.removeVal(1));
+newList.printValues();
+console.log(onlyOne.removeVal(3));
+onlyOne.printValues();
+console.log(emptyList.removeVal(4));
+emptyList.printValues();
 // newList.removeBack().printValues();
 // console.log(newList.isEmpty());
