@@ -162,9 +162,29 @@ class SinglyLinkedList {
     return false;
   }
 
-  // BONUSES:
+  // BONUS:
   hasValueRecursive(val, current = this.head) {
     // Implement hasValue recursively.
+  }
+
+  // Thursday, August 4:
+  findMax() {
+    // Find and return the max value in the list.
+  }
+
+  secondToLast() {
+    // Return the data of the second to last node in this list or null if node does not exist.
+  }
+
+  removeVal(val) {
+    // Remove the node that has the matching given val as it's data.
+    // Return a boolean indicating if a node was removed or not.
+  }
+
+  // BONUS:
+  prepend(newVal, targetVal) {
+    // Insert a new node before a node that has the given targetVal as its data.
+    // Return a boolean indicating whether the node was pre-pended or not.
   }
 }
 
