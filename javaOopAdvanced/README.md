@@ -239,3 +239,16 @@ public class Warrior extends Character implements Attackable {
 1) To achieve security - hide certain details and only show the important details of an object (interface).
 
 2) Java does not support "multiple inheritance" (a class can only inherit from one superclass). However, it can be achieved with interfaces, because the class can implement multiple interfaces. *Note: To implement multiple interfaces, separate them with a comma*.
+
+### Abstracts vs Interfaces
+
+---
+Now that we've seen both Abstract Classes and Interfaces it will be important for us to learn when to use one vs the other.
+
+|**Abstract Classes**|**Interfaces**|
+|----------------|----------|
+| A generic version of a class to be inherited from | Identifies behaviors an implementing class must satisfy |
+| Cannot be instantiated | Cannot be instantiated |
+| Can have a constructor | Doesn't have a constructor |
+| Can have instance variables	| Can only have static final variables |
+| A Java class can only inherit from one parent class (at a time)	| A Java class can implement multiple Interfaces |
