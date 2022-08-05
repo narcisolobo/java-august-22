@@ -116,7 +116,7 @@ class SinglyLinkedList {
       counter++;
       current = current.next;
     }
-    console.log('hello world')
+    console.log("hello world");
     return total / counter;
   }
 
@@ -178,7 +178,7 @@ class SinglyLinkedList {
     }
 
     let max = this.head;
-    let runner = this.head.next
+    let runner = this.head.next;
     while (runner) {
       if (runner.data > max.data) {
         max = runner;
@@ -234,6 +234,65 @@ class SinglyLinkedList {
     return false;
   }
 
+  concatenate(addList) {
+    // Concatenate the nodes of a given list onto the back of this list.
+    // Return the modified list.
+  }
+
+  moveMinToFront() {
+    // Find the node with the smallest data and
+    // move that node to the front of this list.
+    // Return the modified list.
+    // First, check if the list is empty.
+    if (this.isEmpty()) {
+      console.log("This SLL is empty.");
+      return this;
+    } else {
+      // Set your variables
+      let minNode = this.head;
+      let runner = this.head;
+      let prevNode = this.head;
+
+      // Find and set the minNode.
+      while (runner) {
+        if (runner.data < minNode.data) {
+          minNode = runner;
+        }
+        runner = runner.next;
+      }
+      console.log(`The minNode val is: ${minNode.data}`);
+      // If the minNode was already at the beginning, we're done.
+      if (minNode === this.head) {
+        return this;
+      }
+
+      // If not, set your runner at the head again.
+      runner = this.head;
+
+      // Go to the minNode
+      while (runner !== minNode) {
+        prevNode = runner;
+        runner = runner.next;
+      }
+
+      // Remove the minNode
+      prevNode.next = minNode.next;
+      // Set minNode.next to the old head
+      minNode.next = this.head;
+      // Set the head to minNode
+      this.head = minNode;
+    }
+    return this;
+  }
+
+  // BONUS:
+  splitOnVal(val) {
+    // Split this list into two lists, where the 2nd
+    // list starts with the node that has the given value.
+    // splitOnVal(5) for the list (1=>3=>5=>2=>4) will change list to (1=>3)
+    // and the return value will be a new list containing (5=>2=>4)
+  }
+
   // BONUS:
   prepend(newVal, targetVal) {
     // Insert a new node before a node that has the given targetVal as its data.
@@ -242,7 +301,7 @@ class SinglyLinkedList {
 }
 
 const newList = new SinglyLinkedList();
-newList.insertAtBackMany([1, 5, 9, 8, 4, 2, 7, 3, 6]);
+newList.insertAtBackMany([11, 5, 9, 8, 4, 2, 1, 3, 6]);
 const onlyOne = new SinglyLinkedList();
 onlyOne.addToFront(3);
 const emptyList = new SinglyLinkedList();
@@ -252,11 +311,12 @@ const emptyList = new SinglyLinkedList();
 
 // console.log(newList.average());
 
-console.log(newList.removeVal(1));
+// console.log(newList.removeVal(1));
 newList.printValues();
-console.log(onlyOne.removeVal(3));
-onlyOne.printValues();
-console.log(emptyList.removeVal(4));
-emptyList.printValues();
+newList.moveMinToFront().printValues();
+// console.log(onlyOne.removeVal(3));
+// onlyOne.printValues();
+// console.log(emptyList.removeVal(4));
+// emptyList.printValues();
 // newList.removeBack().printValues();
 // console.log(newList.isEmpty());
