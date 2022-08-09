@@ -1,5 +1,7 @@
 package com.nlobo.helloworld;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +23,12 @@ public class HelloworldApplication {
 	@RequestMapping("answer")
 	public String answer() {
 		return "42";
+	}
+	
+	@RequestMapping("/reset")
+	public String reset(HttpSession session) {
+		session.invalidate();
+		return "session reset";
 	}
 
 }
