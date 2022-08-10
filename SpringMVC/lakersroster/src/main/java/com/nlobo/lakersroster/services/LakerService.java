@@ -22,8 +22,8 @@ public class LakerService {
         return lakerRepository.findAll();
     }
     
-    // creates a Laker
-    public Laker createLaker(Laker laker) {
+    // creates and updates a Laker
+    public Laker saveLaker(Laker laker) {
     	return lakerRepository.save(laker);
     }
     
@@ -36,6 +36,10 @@ public class LakerService {
         } else {
             return null;
         }
+    }
+    
+    public void deleteLaker(Laker laker) {
+    	lakerRepository.delete(laker);
     }
 
 }
