@@ -107,4 +107,65 @@ class BinarySearchTree {
 
     return max.value - min.value;
   }
+
+  insert(value) {
+    let newNode = new BSTNode(value);
+    if (this.isEmpty()) {
+      this.root = newNode;
+      return this;
+    }
+
+    let current = this.root;
+
+    while (current) {
+      if (newNode.value < current.value ) {
+        if (!current.left) {
+          current.left = newNode;
+          return this;
+        }
+        current = current.left;
+      } else {
+        if (!current.right) {
+          current.right = newNode;
+          return this;
+        }
+        current = current.right;
+      }
+    }
+  }
+
+  insertRecursive(value, current = this.root) {
+    if (this.isEmpty()) {
+      this.root = new BSTNode(value);
+    }
+
+    if (value < current.value) {
+      if (current.left == null) {
+        current.left = new BSTNode(value);
+        return this;
+      } else {
+        return insertRecursive(value, current.left);
+      }
+    } else {
+      if (current.right == null) {
+        current.right = new BSTNode(value);
+        return this;
+      } else {
+        return insertRecursive(value, current.right);
+      }
+    }
+  }
+
+
+
+  insertMany(arr) {
+    arr.forEach(item => {
+      this.insert(item);
+    });
+  }
 }
+
+const myTree = new BinarySearchTree();
+myTree.insertMany([10, 2, 1, 9, 7, 3, 4, 8, 5, 6]);
+myTree.insertRecursive(12);
+myTree.inOrder();
