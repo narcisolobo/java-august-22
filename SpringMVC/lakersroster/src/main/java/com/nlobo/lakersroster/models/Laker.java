@@ -12,6 +12,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -25,8 +26,8 @@ public class Laker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull
-    @Size(min = 2, max = 45)
+    @NotEmpty
+    @Size(min = 2, max = 45, message = "First name must be between 2 and 45 letters.")
     private String firstName;
     
     @NotNull
@@ -38,7 +39,7 @@ public class Laker {
     private String position;
     
     @NotNull
-    @Min(17)
+    @Min(value = 17, message = "Age must be at least 17 these days.")
     @Max(45)
     private Integer age;
     

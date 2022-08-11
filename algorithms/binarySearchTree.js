@@ -156,7 +156,13 @@ class BinarySearchTree {
     }
   }
 
-
+  inOrder(current = this.root) {
+    if (current) {
+      this.inOrder(current.left);
+      console.log(current.value);
+      this.inOrder(current.right);
+    }
+  }
 
   insertMany(arr) {
     arr.forEach(item => {

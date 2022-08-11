@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
         <div class="container">
-            <span class="navbar-brand mb-0 h1">LAKERS ROSTER</span>
+            <a class="navbar-brand mb-0 h1" href="/lakers">LAKERS ROSTER</a>
         </div>
     </nav>
     <div class="container">
@@ -27,17 +27,25 @@
                             <th>Height</th>
                             <th>Weight</th>
                             <th>College</th>
+                            <th>ACTIONS</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach var="laker" items="${allLakers}">
                             <tr>
-                                <td>${laker.firstName} ${laker.lastName}</td>
+                                <td><a href="/lakers/${laker.id}">${laker.firstName} ${laker.lastName}</a></td>
                                 <td>${laker.position}</td>
                                 <td>${laker.age}</td>
                                 <td>${laker.height}</td>
                                 <td>${laker.weight}</td>
                                 <td>${laker.college}</td>
+                                <td class="d-flex gap-2 flex-nowrap">
+                                    <a href="/lakers/${laker.id}/edit" class="btn btn-sm btn-warning">EDIT</a>
+                                    <form action="/lakers/${laker.id}/delete" method="post">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="submit" class="btn btn-sm btn-danger" value="DELETE" />
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
