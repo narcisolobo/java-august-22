@@ -155,13 +155,26 @@ class BinarySearchTree {
       }
     }
   }
+  
+  toArrPreOrder(node = this.root, vals = []) {
+    if (!node) return vals;
+    vals.push(node.value);
+    this.toArrPreOrder(node.left);
+    this.toArrPreOrder(node.right);
+  }
 
-  inOrder(current = this.root) {
-    if (current) {
-      this.inOrder(current.left);
-      console.log(current.value);
-      this.inOrder(current.right);
-    }
+  toArrInOrder(node = this.root, vals = []) {
+    if (!node) return vals;
+    this.toArrInOrder(node.left);
+    vals.push(node.value);
+    this.toArrInOrder(node.right);
+  }
+  
+  toArrPostOrder(node = this.root, vals = []) {
+    if (!node) return vals;
+    this.toArrPostOrder(node.left);
+    this.toArrPostOrder(node.right);
+    vals.push(node.value);
   }
 
   insertMany(arr) {

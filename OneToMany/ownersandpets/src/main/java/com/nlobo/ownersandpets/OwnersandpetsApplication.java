@@ -1,0 +1,13 @@
+package com.nlobo.ownersandpets;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class OwnersandpetsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(OwnersandpetsApplication.class, args);
+	}
+
+}
