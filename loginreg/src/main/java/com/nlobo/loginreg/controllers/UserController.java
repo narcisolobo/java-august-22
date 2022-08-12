@@ -49,9 +49,40 @@ public class UserController {
 		return "redirect:/dashboard";
 	}
 	
+	@PostMapping("/users/login")
+	public String login(
+			Model model,
+			HttpSession session,
+			@Valid @ModelAttribute("loginUser") LoginUser loginUser,
+			BindingResult result) {
+		
+		// call the login method in the service
+		User loggedInUser = userService.login(loginUser, result);
+		
+		if (result.hasErrors()) {
+			model.addAttribute("user", new User());
+			return "index.jsp";
+		}
+		
+		session.setAttribute("userId", loggedInUser.getId());
+//		session.setAttribute("firstName", loggedInUser.getFirstName());
+		return "redirect:/dashboard";
+	}
+
 	@GetMapping("/dashboard")
-	public String dashboard() {
+	public String dashboard(HttpSession session, Model model) {
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/";
+		}
+		User user = userService.findById((Long) session.getAttribute("userId"));
+		model.addAttribute("user", user);
 		return "dashboard.jsp";
+	}
+
+	@GetMapping("/users/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 
 }

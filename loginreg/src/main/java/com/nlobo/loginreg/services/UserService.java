@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
+import com.nlobo.loginreg.models.LoginUser;
 import com.nlobo.loginreg.models.User;
 import com.nlobo.loginreg.repositories.UserRepository;
 
@@ -44,6 +45,31 @@ public class UserService {
 	}
 	
 	// login method
+	public User login(LoginUser loginUser, BindingResult result) {
+		// Does user exist?
+		Optional<User> potentialUser = userRepository.findByEmail(loginUser.getEmail());
+		
+		if (potentialUser.isEmpty()) {
+			result.rejectValue("email", "noEmail", "User not found. Please register.");
+			return null;
+		}
+		
+		User user = potentialUser.get();
+		
+		// Is password correct?
+		if (!BCrypt.checkpw(loginUser.getPassword(), user.getPassword())) {
+			result.rejectValue("password", "noMatch", "Incorrect password.");
+		}
+		
+		if (result.hasErrors()) return null;
+		else return user;
+		
+	}
 	
-	// 
+	public User findById(Long id) {
+		Optional<User> optionalUser = userRepository.findById(id);
+		if (optionalUser.isEmpty()) return null;
+		else return optionalUser.get();
+	}
+	
 }
