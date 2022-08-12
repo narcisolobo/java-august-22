@@ -157,24 +157,27 @@ class BinarySearchTree {
   }
   
   toArrPreOrder(node = this.root, vals = []) {
-    if (!node) return vals;
+    if (!node) return;
     vals.push(node.value);
-    this.toArrPreOrder(node.left);
-    this.toArrPreOrder(node.right);
+    this.toArrPreOrder(node.left, vals);
+    this.toArrPreOrder(node.right, vals);
+    return vals;
   }
 
   toArrInOrder(node = this.root, vals = []) {
-    if (!node) return vals;
-    this.toArrInOrder(node.left);
+    if (!node) return;
+    this.toArrInOrder(node.left, vals);
     vals.push(node.value);
-    this.toArrInOrder(node.right);
+    this.toArrInOrder(node.right, vals);
+    return vals;
   }
   
   toArrPostOrder(node = this.root, vals = []) {
-    if (!node) return vals;
-    this.toArrPostOrder(node.left);
-    this.toArrPostOrder(node.right);
+    if (!node) return;
+    this.toArrPostOrder(node.left, vals);
+    this.toArrPostOrder(node.right, vals);
     vals.push(node.value);
+    return vals;
   }
 
   insertMany(arr) {
@@ -182,9 +185,38 @@ class BinarySearchTree {
       this.insert(item);
     });
   }
+
+  toArrLevelOrder() {
+    let queue = [];
+    let output = [];
+
+    queue.push(this.root);
+    while (queue.length) {
+      let node = queue.shift();
+      output.push(node.value);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    return output;
+  }
+
+  size(current = this.root) {
+    if (!current) return 0;
+    let leftSize = this.size(root.left);
+    let rightSize = this.size(root.right);
+    return Math.max(leftSize, rightSize) + 1;
+  }
+
+  height(root = this.root) {
+    if (!root) return -1;
+
+    let leftHeight = this.height(root.left);
+    let rightHeight = this.height(root.right);
+    return Math.max(leftHeight, rightHeight) + 1;
+  }
 }
 
 const myTree = new BinarySearchTree();
-myTree.insertMany([10, 2, 1, 9, 7, 3, 4, 8, 5, 6]);
-myTree.insertRecursive(12);
-myTree.inOrder();
+myTree.insertMany([30, 20, 50, 15, 25, 35, 45, 12, 17, 36, 32]);
+console.log(myTree.height());
