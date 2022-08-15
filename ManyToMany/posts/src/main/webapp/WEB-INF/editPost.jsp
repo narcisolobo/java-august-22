@@ -22,8 +22,9 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h5>Add Post</h5>
-                <form:form action="/posts/insert" method="POST" modelAttribute="post">
+                <h5>Edit Post</h5>
+                <form:form action="/posts/${post.id}/update" method="POST" modelAttribute="post">
+                    <input type="hidden" name="_method" value="put">
                     <input type="hidden" name="creator" value="${user.id}">
                     <div class="mb-3">
                         <form:label class="form-label" path="title">Title:</form:label>

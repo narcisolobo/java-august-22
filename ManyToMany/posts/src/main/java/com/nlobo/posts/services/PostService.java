@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nlobo.posts.models.Post;
+import com.nlobo.posts.models.User;
 import com.nlobo.posts.repositories.PostRepository;
 
 @Service
@@ -31,6 +32,18 @@ public class PostService {
 	
 	public void deletePost(Post post) {
 		postRepository.delete(post);
+	}
+	
+	// add a user to the post's "usersWhoLiked"
+	public void addLikeToPost(Post post, User user) {
+		post.getUsersWhoLiked().add(user);
+		postRepository.save(post);
+	}
+	
+	// remove a user from the post's "usersWhoLiked"
+	public void removeLikeFromPost(Post post, User user) {
+		post.getUsersWhoLiked().remove(user);
+		postRepository.save(post);
 	}
 
 }

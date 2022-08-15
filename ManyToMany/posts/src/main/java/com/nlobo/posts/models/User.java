@@ -1,5 +1,6 @@
 package com.nlobo.posts.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -81,6 +82,8 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.posts = new ArrayList<Post>();
+        this.likedPosts = new ArrayList<Post>();
     }
 
     // TODO - don't forgot getters and setters

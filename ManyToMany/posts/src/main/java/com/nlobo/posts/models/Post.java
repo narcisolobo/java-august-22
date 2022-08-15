@@ -1,5 +1,6 @@
 package com.nlobo.posts.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -58,9 +59,11 @@ public class Post {
     
     public Post() {}
     
-    public Post(String title, String content) {
+    public Post(String title, String content, User creator) {
     	this.title = title;
     	this.content = content;
+    	this.creator = creator;
+    	this.usersWhoLiked = new ArrayList<User>();
     }
 
 
