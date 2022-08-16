@@ -23,6 +23,10 @@ class minHeap {
   getLeftChildValue(parentIdx) {
     return this.heap[this.getLeftChildIdx(parentIdx)];
   }
+
+  getRightChildValue(parentIdx) {
+    return this.heap[this.getRightChildIdx(parentIdx)];
+  }
   
   hasParent(idx) {
     return this.getParentIdx(idx) >= 0;
@@ -30,6 +34,10 @@ class minHeap {
 
   hasLeftChild(parentIdx) {
     return this.getLeftChildIdx(parentIdx) < this.heap.length;
+  }
+
+  hasRightChild(parentIdx) {
+    return this.getRightChildIdx(parentIdx) < this.heap.length;
   }
 
   swap(idxA, idxB) {
