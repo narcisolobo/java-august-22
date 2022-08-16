@@ -16,14 +16,22 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3 text-light">
         <div class="container">
             <span class="navbar-brand mb-0 h1">THE WATCHLIST</span>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/movies/new">Add a Movie</a>
-                </li>
-            </ul>
-            <div class="d-flex justify-content-end align-items-center gap-3">
-                <p class="nav-text mb-0">Welcome, ${user.username}</p>
-                <a href="/users/logout" class="btn btn-sm btn-outline-light">LOGOUT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNav" class="collapse navbar-collapse me-auto">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/movies">Movie Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/movies/new">Add a Movie</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3 ms-auto">
+                    <p class="nav-text mb-0">Welcome, ${user.username}</p>
+                    <a href="/users/logout" class="btn btn-sm btn-outline-light">LOGOUT</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -44,10 +52,31 @@
                     <tbody>
                         <c:forEach var="movie" items="${movies}">
                         <tr>
-                            <td>${movie.title}</td>
+                            <td>
+                                <a href="/movies/${movie.id}">${movie.title}</a>
+                            </td>
                             <td>${movie.genre}</td>
                             <td>${movie.releaseYear}</td>
-                            <td>ACTIONS</td>
+                            <c:choose>
+                                <c:when test="${movie.creator.id == user.id}">
+                                    <td class="d-flex gap-2">
+                                        <a href="/movies/${movie.id}/edit" class="btn btn-sm btn-warning">EDIT</a>
+                                        <form action="/movies/${movie.id}/delete" method="post">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <input type="submit" value="DELETE" class="btn btn-sm btn-danger">
+                                        </form>
+                                    </td>
+                                </c:when>
+                                <c:otherwise>
+                                    <td class="d-flex gap-2">
+                                        <a href="/movies/${movie.id}/edit" class="btn btn-sm btn-warning disabled">EDIT</a>
+                                        <form action="/movies/${movie.id}/delete" method="post">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <input disabled type="submit" value="DELETE" class="btn btn-sm btn-danger">
+                                        </form>
+                                    </td>
+                                </c:otherwise>
+                            </c:choose>
                             <td>SEEN</td>
                         </tr>
                         </c:forEach>
@@ -65,12 +94,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="movie" items="${movies}">
+                        <c:forEach var="movie" items="${usersMovies}">
                         <tr>
-                            <td>${movie.title}</td>
+                            <td>
+                                <a href="/movies/${movie.id}">${movie.title}</a>
+                            </td>
                             <td>${movie.genre}</td>
                             <td>${movie.releaseYear}</td>
-                            <td>ACTIONS</td>
+                            <td class="d-flex gap-2">
+                                <a href="/movies/${movie.id}/edit" class="btn btn-sm btn-warning">EDIT</a>
+                                <form action="/movies/${movie.id}/delete" method="post">
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="submit" value="DELETE" class="btn btn-sm btn-danger">
+                                </form>
+                            </td>
                             <td>SEEN</td>
                         </tr>
                         </c:forEach>
@@ -79,5 +116,6 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>

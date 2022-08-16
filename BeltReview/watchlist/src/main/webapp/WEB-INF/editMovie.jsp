@@ -39,10 +39,11 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <h5 class="card-header">ADD A MOVIE TO YOUR WATCHLIST</h5>
+                    <h5 class="card-header">EDIT MOVIE ON YOUR WATCHLIST</h5>
                     <div class="card-body">
-                        <form:form action="/movies/insert" method="POST" modelAttribute="movie">
+                        <form:form action="/movies/${movie.id}/update" method="POST" modelAttribute="movie">
                             <form:hidden path="creator" value="${user.id}" />
+                            <input type="hidden" name="_method" value="put">
                             <div class="mb-3">
                                 <form:label class="form-label" path="title">Movie Title:</form:label>
                                 <form:input class="form-control" path="title" />
@@ -64,7 +65,7 @@
                                 <form:errors class="form-text text-danger" path="description" />
                             </div>
                             <div class="d-flex justify-content-end">
-                                <input type="submit" value="ADD MOVIE" class="btn btn-outline-dark">
+                                <input type="submit" value="EDIT MOVIE" class="btn btn-outline-dark">
                             </div>
                         </form:form>
                     </div>

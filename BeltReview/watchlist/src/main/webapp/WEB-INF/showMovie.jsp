@@ -39,34 +39,35 @@
         <div class="row">
             <div class="col">
                 <div class="card">
-                    <h5 class="card-header">ADD A MOVIE TO YOUR WATCHLIST</h5>
+                    <h5 class="card-header">MOVIE DETAILS</h5>
                     <div class="card-body">
-                        <form:form action="/movies/insert" method="POST" modelAttribute="movie">
-                            <form:hidden path="creator" value="${user.id}" />
-                            <div class="mb-3">
-                                <form:label class="form-label" path="title">Movie Title:</form:label>
-                                <form:input class="form-control" path="title" />
-                                <form:errors class="form-text text-danger" path="title" />
-                            </div>
-                            <div class="mb-3">
-                                <form:label class="form-label" path="genre">Genre:</form:label>
-                                <form:input class="form-control" path="genre" />
-                                <form:errors class="form-text text-danger" path="genre" />
-                            </div>
-                            <div class="mb-3">
-                                <form:label class="form-label" path="releaseYear">Release Year:</form:label>
-                                <form:input type="number" class="form-control" path="releaseYear" />
-                                <form:errors class="form-text text-danger" path="releaseYear" />
-                            </div>
-                            <div class="mb-3">
-                                <form:label class="form-label" path="description">Description:</form:label>
-                                <form:textarea class="form-control" path="description" />
-                                <form:errors class="form-text text-danger" path="description" />
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <input type="submit" value="ADD MOVIE" class="btn btn-outline-dark">
-                            </div>
-                        </form:form>
+                        <h5 class="card-title">Movie Title: ${movie.title}</h5>
+                        <p class="card-text mb-1"><strong>Uploaded by: ${movie.creator}</strong></p>
+                        <p class="card-text mb-1"><strong>Genre: ${movie.genre}</strong></p>
+                        <p class="card-text mb-1"><strong>Release Year: ${movie.releaseYear}</strong></p>
+                        <p class="card-text mb-1"><strong>Description: ${movie.description}</strong></p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-end gap-2">
+                        <c:choose>
+                            <c:when test="${movie.creator.id == user.id}">
+                                <td class="d-flex gap-2">
+                                    <a href="/movies/${movie.id}/edit" class="btn btn-sm btn-warning">EDIT</a>
+                                    <form action="/movies/${movie.id}/delete" method="post">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="submit" value="DELETE" class="btn btn-sm btn-danger">
+                                    </form>
+                                </td>
+                            </c:when>
+                            <c:otherwise>
+                                <td class="d-flex gap-2">
+                                    <a href="/movies/${movie.id}/edit" class="btn btn-sm btn-warning disabled">EDIT</a>
+                                    <form action="/movies/${movie.id}/delete" method="post">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input disabled type="submit" value="DELETE" class="btn btn-sm btn-danger">
+                                    </form>
+                                </td>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
