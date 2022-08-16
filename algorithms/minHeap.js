@@ -9,15 +9,15 @@ class minHeap {
   }
 
   getLeftChildIdx(parentIdx) {
-    return (parentIdx => parentIdx + 1) * 2 + 1;
+    return (parentIdx + 1) * 2 - 1;
   }
 
   getRightChildIdx(parentIdx) {
     return (parentIdx * 2) + 1;
   }
 
-  getParentValue(idx) {
-    return this.heap[this.getParentIdx(idx)];
+  getParentValue(childIdx) {
+    return this.heap[this.getParentIdx(childIdx)];
   }
 
   getLeftChildValue(parentIdx) {
