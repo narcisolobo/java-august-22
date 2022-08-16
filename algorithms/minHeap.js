@@ -27,6 +27,10 @@ class minHeap {
   getRightChildValue(parentIdx) {
     return this.heap[this.getRightChildIdx(parentIdx)];
   }
+
+  isEmpty() {
+    return this.heap.length == 0;
+  }
   
   hasParent(idx) {
     return this.getParentIdx(idx) >= 0;
@@ -49,7 +53,7 @@ class minHeap {
   insert(value) {
     this.heap.push(value);
     let idx = this.heap.length - 1;
-    while(this.hasParent(idx) && this.parent(idx) > this.heap[idx]) {
+    while(this.hasParent(idx) && this.getParentValue(idx) > this.heap[idx]) {
       this.swap(idx, this.getParentIdx(idx));
       idx = this.getParentIdx(idx);
     }
