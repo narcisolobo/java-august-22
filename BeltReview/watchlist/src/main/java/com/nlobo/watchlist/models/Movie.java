@@ -42,8 +42,8 @@ public class Movie {
 	@Size(min = 10, max = 1024, message = "Description must be between 10 and 1024 characters.")
 	private String description;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "creator_id")
 	private User creator;
 	
 	@Column(updatable=false)

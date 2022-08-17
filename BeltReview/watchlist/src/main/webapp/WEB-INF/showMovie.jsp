@@ -42,10 +42,10 @@
                     <h5 class="card-header">MOVIE DETAILS</h5>
                     <div class="card-body">
                         <h5 class="card-title">Movie Title: ${movie.title}</h5>
-                        <p class="card-text mb-1"><strong>Uploaded by: ${movie.creator}</strong></p>
-                        <p class="card-text mb-1"><strong>Genre: ${movie.genre}</strong></p>
-                        <p class="card-text mb-1"><strong>Release Year: ${movie.releaseYear}</strong></p>
-                        <p class="card-text mb-1"><strong>Description: ${movie.description}</strong></p>
+                        <p class="card-text mb-1"><strong>Uploaded by: </strong>${movie.creator.username}</p>
+                        <p class="card-text mb-1"><strong>Genre: </strong>${movie.genre}</p>
+                        <p class="card-text mb-1"><strong>Release Year: </strong>${movie.releaseYear}</p>
+                        <p class="card-text mb-1"><strong>Description: </strong>${movie.description}</p>
                     </div>
                     <div class="card-footer d-flex justify-content-end gap-2">
                         <c:choose>
