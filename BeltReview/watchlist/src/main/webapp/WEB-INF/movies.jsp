@@ -52,11 +52,11 @@
                     <tbody>
                         <c:forEach var="movie" items="${movies}">
                         <tr>
-                            <td>
+                            <td class="align-middle">
                                 <a href="/movies/${movie.id}">${movie.title}</a>
                             </td>
-                            <td>${movie.genre}</td>
-                            <td>${movie.releaseYear}</td>
+                            <td class="align-middle">${movie.genre}</td>
+                            <td class="align-middle">${movie.releaseYear}</td>
                             <c:choose>
                                 <c:when test="${movie.creator.id == user.id}">
                                     <td class="d-flex gap-2">
@@ -77,7 +77,7 @@
                                     </td>
                                 </c:otherwise>
                             </c:choose>
-                            <td>SEEN</td>
+                            <td class="align-middle">SEEN</td>
                         </tr>
                         </c:forEach>
                     </tbody>
@@ -96,11 +96,11 @@
                     <tbody>
                         <c:forEach var="movie" items="${usersMovies}">
                         <tr>
-                            <td>
+                            <td class="align-middle">
                                 <a href="/movies/${movie.id}">${movie.title}</a>
                             </td>
-                            <td>${movie.genre}</td>
-                            <td>${movie.releaseYear}</td>
+                            <td class="align-middle">${movie.genre}</td>
+                            <td class="align-middle">${movie.releaseYear}</td>
                             <td class="d-flex gap-2">
                                 <a href="/movies/${movie.id}/edit" class="btn btn-sm btn-warning">EDIT</a>
                                 <form action="/movies/${movie.id}/delete" method="post">
@@ -108,7 +108,7 @@
                                     <input type="submit" value="DELETE" class="btn btn-sm btn-danger">
                                 </form>
                             </td>
-                            <td>SEEN</td>
+                            <td class="align-middle">SEEN</td>
                         </tr>
                         </c:forEach>
                     </tbody>
