@@ -80,17 +80,6 @@ class SinglyLinkedList {
     return newArr;
   }
 
-  // Bonus:
-  /*
-   * Creates a new node with the given data and inserts it at the back of
-   * this list.
-   * - Time: O(?).
-   * - Space: O(?).
-   * @param {any} data The data to be added to the new node.
-   * @param {?ListNode} runner The current node during the traversal of this list
-   *    or null when the end of the list has been reached.
-   * @returns {SinglyLinkedList} This list.
-   */
   insertAtBackRecursive(data, runner = this.head) {
     if (!runner.next) {
       runner.next = new ListNode(data);
@@ -285,19 +274,77 @@ class SinglyLinkedList {
     return this;
   }
 
+  reverse() {
+    // Reverse a singly-linked list in place.
+    if (this.isEmpty()) return this;
+    let prev = null;
+    let curr = this.head;
+    let temp = null;
+    while (curr) {
+      temp = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = temp;
+    }
+    this.head = prev;
+    return this;
+  }
+
   // BONUS:
   splitOnVal(val) {
     // Split this list into two lists, where the 2nd
     // list starts with the node that has the given value.
     // splitOnVal(5) for the list (1=>3=>5=>2=>4) will change list to (1=>3)
     // and the return value will be a new list containing (5=>2=>4)
+    if (this.isEmpty() || this.head.next == null) {
+      console.log('This list is empty or has only one node.');
+      return this;
+    }
+
+    let prev = null;
+    let curr = this.head;
+    while (curr && curr.data != val) {
+      prev = curr;
+      curr = curr.next;
+    }
+
+    if (curr) {
+      prev.next = null;
+      const newList = new SinglyLinkedList();
+      newList.head = curr;
+      return newList;
+    }
+
+    return this;
+
   }
 
   // BONUS:
   prepend(newVal, targetVal) {
     // Insert a new node before a node that has the given targetVal as its data.
     // Return a boolean indicating whether the node was pre-pended or not.
+    if (this.isEmpty()) {
+      console.log('This list is empty.');
+      return false;
+    }
+
+    let prev = null;
+    let curr = this.head;
+    while (curr && curr.data != targetVal) {
+      prev = curr;
+      curr = curr.next;
+    }
+
+    if (curr) {
+      const node = new ListNode(newVal);
+      prev.next = node;
+      node.next = curr;
+      return true;
+    }
+
+    return false;
   }
+
 }
 
 const newList = new SinglyLinkedList();
@@ -312,11 +359,13 @@ const emptyList = new SinglyLinkedList();
 // console.log(newList.average());
 
 // console.log(newList.removeVal(1));
+console.log(newList.printValues().prepend(23, 0));
 newList.printValues();
-newList.moveMinToFront().printValues();
+// newList.moveMinToFront().printValues();
 // console.log(onlyOne.removeVal(3));
 // onlyOne.printValues();
 // console.log(emptyList.removeVal(4));
 // emptyList.printValues();
 // newList.removeBack().printValues();
 // console.log(newList.isEmpty());
+// newList.splitOnVal(8).printValues();
