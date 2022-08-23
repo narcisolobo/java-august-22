@@ -15,13 +15,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.ServletContextResource;
 
+import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.io.InputStream;
 
 @Controller
 public class UserController {
@@ -87,19 +92,14 @@ public class UserController {
         return "dashboard.jsp";
     }
 
+    @ResponseBody
     @GetMapping("/images")
-    public ResponseEntity<byte[]> showImage(
-            @RequestParam("id") Long id,
-            HttpServletResponse response,
-            HttpServletRequest request)
-            throws ServletException, IOException {
-        User user = userService.findById(id);
-        byte[] imageContent = user.getProfilePic();
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.valueOf("image/jpeg"));
-        return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
-//        response.getOutputStream().write(user.getProfilePic());
-//        response.getOutputStream().close();
+    public Resource getImageAsResource(
+    		ServletContext servletContext,
+    		@RequestParam("id") Long id) {
+    	User user = userService.findById(id);
+    	byte[] image = user.getProfilePic();
+    	return new ServletContextResource(servletContext, image);
     }
 
     @GetMapping("/users/logout")
